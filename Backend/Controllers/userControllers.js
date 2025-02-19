@@ -150,6 +150,10 @@ const getUser = async (req ,res) =>{
         })
     } catch (error) {
         console.log(error)
+        res.status(500).json({
+            message:'Internal Server Error',
+            success:false
+        })
     }
 }
 module.exports = {signUpUser,loginUser,isLogin,getUser}
