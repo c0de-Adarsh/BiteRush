@@ -5,6 +5,7 @@ const db = require('./db')
 const route = require('./Routes/Route')
 const cloudinary = require('cloudinary').v2
 const fileUpload = require('express-fileupload')
+const cors = require('cors')
 const apiErrors = require('./Utils/apiError')
 
 const PORT = process.env.PORT || 5000
@@ -16,6 +17,11 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
+
+app.use(cors({
+    origin:'*',
+    credentials:true
+}))
 
 app.get('/',(req , res)=>{
     res.send('Hello world')
