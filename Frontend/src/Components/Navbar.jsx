@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { IconButton, Avatar, Menu, MenuItem, Popover } from '@mui/material';
 import { FaBars } from 'react-icons/fa';
 import { RxCross2 } from 'react-icons/rx';
+import { toast } from 'react-toastify';
+import {IsLogin} from '../Actions/userActions'
 
 
 const avatars = [
@@ -48,7 +50,19 @@ const Navbar = () => {
     }
     return Math.abs(hash)
   }
+   
 
+  const getProfileImageIndex = (userEmail) => {
+    const hashedInt = simpleHash(userEmail);
+    return hashedInt % avatars.length;
+  };
+
+  useEffect(() => {
+    if (userEmail) {
+      const avatarIndex = getProfileImageIndex(userEmail);
+      setUserAvatar(avatars[avatarIndex].src);
+    }
+  }, [userEmail]);
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -57,6 +71,14 @@ const Navbar = () => {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
+
+  const logOut = () => {
+    localStorage.removeItem('accesstoken')
+    dispatch(IsLogin())
+    navigate('/')
+    setToggle(false)
+    toast.success('Logout Successfuly !')
+  }
   return (
     <>
       <nav className='bg-white backdrop:filter backdrop:blur-sm border-b py-3 md:py-4 bg-opacity-85 min-w-full z-10 fixed'>

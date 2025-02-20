@@ -12,7 +12,7 @@ const { CreateNewRecipe, getAllRecipes, getRecipe, getAllRecipesOfUser, updateRe
 router.route('/register').post(signUpUser)
 router.route('/login').post(loginUser)
 router.route('/islogin').get(jwtAuthMiddleWare,isLogin)
-router.route('/getuser').get(getUser)
+router.route('/getuser').get(jwtAuthMiddleWare,getUser)
 
 
 //recipe routes

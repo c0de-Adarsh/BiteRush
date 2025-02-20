@@ -1,5 +1,5 @@
 import axios from "axios"
-import { getUserFail, isLoginRequest, isLoginSuccess, loginRequest, loginSuccess, registerFail, registerRequest, registerSuccess } from "../Slices/userSlice"
+import { getUserFail, getUserRequest, getUserSuccess, isLoginRequest, isLoginSuccess, loginRequest, loginSuccess, registerFail, registerRequest, registerSuccess } from "../Slices/userSlice"
 import API from "../Utils"
 import { toast } from "react-toastify"
 
@@ -45,7 +45,7 @@ export const registerUser = (userData) => async (dispatch) =>{
 }
 
 
-export const islogin = () => async (dispatch) =>{
+export const IsLogin = () => async (dispatch) =>{
     try {
        
         dispatch(isLoginRequest())
@@ -56,10 +56,31 @@ export const islogin = () => async (dispatch) =>{
             }
         }
 
-        const {data} = await axios.get(`${API}/islogin`,)
+        const {data} = await axios.get(`${API}/islogin`,config)
 
         dispatch(isLoginSuccess(data))
     } catch (error) {
         dispatch(getUserFail(error.response.data.message))
+    }
+}
+
+export const getUser = () => async (dispatch) =>{
+
+    try {
+       
+        dispatch(getUserRequest())
+
+        const config = {
+           headers:{
+            Authorization: `Bearer ${localStorage.getItem('accesstoken')}`
+           }
+        }
+
+        const {data} = await axios.get(`${API}/getuser`,config)
+
+        dispatch(getUserSuccess(data.user))
+    } catch (error) {
+        dispatch(error.response.data.message)
+        dispatch(getUserFail())
     }
 }
