@@ -95,11 +95,11 @@ const Navbar = () => {
               </Link>}
 
 
-              <Link className='text-black font-semibold hover:text-orange-500 text-lg'>
+              <Link to='/about' className='text-black font-semibold hover:text-orange-500 text-lg'>
                 About
               </Link>
 
-              <Link className='text-black font-semibold hover:text-orange-500 text-lg'>
+              <Link to='/contact' className='text-black font-semibold hover:text-orange-500 text-lg'>
                 Contact
               </Link>
             </ul>

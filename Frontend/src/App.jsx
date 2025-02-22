@@ -10,6 +10,12 @@ import Login from './Pages/Login'
 import Account from './Pages/Account'
 import CreateRecipe from './Pages/CreateRecipe'
 import MyRecipe from './Pages/MyRecipe'
+import EditRecipe from './Pages/EditRecipe'
+import Recipe from './Pages/Recipe'
+import Recipes from './Pages/Recipes'
+import About from './Pages/About'
+import Contact from './Pages/Contact'
+import Footer from './Pages/Footer'
 
 
 
@@ -53,6 +59,8 @@ const App = () => {
       <Route path='/' element={<Home/>}/>
       <Route path='/register' element={<Signup/>}/>
       <Route path='/login' element={<Login/>}/>
+      <Route path='/about' element={<About/>}/>
+      <Route path='/contact' element={<Contact/>}/>
 
 
       <Route path='/profile' element={
@@ -72,6 +80,15 @@ const App = () => {
           <MyRecipe />
         </ProtectedRoute>
       }/>
+
+      <Route path='/editrecipe/:recipeId' element={
+        <ProtectedRoute>
+          <EditRecipe />
+        </ProtectedRoute>
+      }/>
+
+<Route path="/recipes" element={<ProtectedRoute><Recipes /></ProtectedRoute>} />
+<Route path="/recipe/:recipeId" element={<ProtectedRoute><Recipe /></ProtectedRoute>} />
     </Routes>
 
     <ToastContainer
@@ -88,6 +105,7 @@ const App = () => {
         className="mt-14 font-bold  "
 
       />
+      <Footer />
     </BrowserRouter>
     </>
   )

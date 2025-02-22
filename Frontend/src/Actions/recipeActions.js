@@ -63,7 +63,7 @@ export const getRecipe = (id) => async (dispatch) =>{
             }
         }
 
-        const {data} = await axios.get(`${API}/onerecipe`+id ,config)
+        const {data} = await axios.get(`${API}/onerecipe/${id}` ,config)
 
         dispatch(getRecipeSuccess(data.recipe))
     } catch (error) {
@@ -102,11 +102,12 @@ export const  updateRecipe = (id,recipeData) => async (dispatch) =>{
         dispatch(updateRecipeRequest())
         const config = {
             headers: {
+                'Content-Type': 'multipart/form-data',
                 Authorization: `Bearer ${localStorage.getItem('accesstoken')}`
             }
         }
 
-        const {data} = await axios.get(`${API}/updaterecipe`+id,recipeData,config)
+        const {data} = await axios.put(`${API}/updaterecipe/${id}`,recipeData,config)
 
         dispatch(updateRecipeSuccess())
 
