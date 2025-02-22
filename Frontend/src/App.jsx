@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import {BrowserRouter, Route, Routes, useLocation} from 'react-router-dom'
+import {BrowserRouter, Navigate, Route, Routes, useLocation} from 'react-router-dom'
 import Navbar from './Components/Navbar'
 import Home from './Pages/Home'
 import Signup from './Pages/Signup'
@@ -7,6 +7,9 @@ import { getUser, IsLogin } from './Actions/userActions'
 import { useDispatch, useSelector } from 'react-redux'
 import { ToastContainer } from 'react-toastify'
 import Login from './Pages/Login'
+import Account from './Pages/Account'
+import CreateRecipe from './Pages/CreateRecipe'
+import MyRecipe from './Pages/MyRecipe'
 
 
 
@@ -50,6 +53,25 @@ const App = () => {
       <Route path='/' element={<Home/>}/>
       <Route path='/register' element={<Signup/>}/>
       <Route path='/login' element={<Login/>}/>
+
+
+      <Route path='/profile' element={
+        <ProtectedRoute>
+          <Account/>
+        </ProtectedRoute>
+      }/>
+
+      <Route path='/createrecipe' element={
+        <ProtectedRoute>
+          <CreateRecipe />
+        </ProtectedRoute>
+      }/>
+
+      <Route path='/myrecipe' element={
+        <ProtectedRoute>
+          <MyRecipe />
+        </ProtectedRoute>
+      }/>
     </Routes>
 
     <ToastContainer

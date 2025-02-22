@@ -43,8 +43,8 @@ export const getMyRecipes = () => async (dispatch) => {
         }
 
         const {data} = await axios.get(`${API}/allrecipeuser`,config)
-
-        dispatch(getUserRecipesSuccess(data.recipes))
+     
+        dispatch(getUserRecipesSuccess(data.recipe))
     } catch (error) {
         dispatch(getUserRecipesFail(error.response.data.message))
     }
@@ -128,7 +128,7 @@ export const deleteRecipe = (id) => async (dispatch) =>{
             }
         }
 
-        const {data} = await axios.delete(`${API}/deleterecipe`+id,config)
+        const {data} = await axios.delete(`${API}/deleterecipe/${id}`,config)
         dispatch(deleteRecipeSuccess())
 
         toast.success("Recipe deleted successfully!");
