@@ -107,7 +107,7 @@ const CreateRecipe = () => {
 
 
                         <div>
-                            <label htmlFor="">Ingredients</label>
+                            <label htmlFor="" className="block text-gray-700 font-semibold">Ingredients</label>
                             {
                                 ingredients.map((ingredient, index) => (
                                     <div key={index} className="flex items-center space-x-2 mt-2 ">
@@ -136,7 +136,7 @@ const CreateRecipe = () => {
                             >
                                 Add Ingredient
                             </button>
-                            <input type="text" className="w-full p-3 border border-gray-900 rounded-md focus:outline-none focus:border-orange-500" name="" id="" />
+                            
                         </div>
 
                         <div>
